@@ -1,0 +1,19 @@
+version: "3"
+services:
+    app-A:
+        build:
+            context: ./app-A
+            dockerfile: ./Dockerfile
+        volumes:
+            - ./app-A/logs:/app/logs
+        ports:
+            - 5000:5000
+    app-B:
+        build:
+            context: ./app-B
+            dockerfile: ./Dockerfile
+        volumes:
+            - ./app-B/data:/app/data
+        links:
+            - app-A:app-A
+        
